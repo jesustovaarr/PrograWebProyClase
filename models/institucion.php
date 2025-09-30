@@ -42,22 +42,21 @@ class Institucion extends Sistema {
             return null;
         }
         if ($this -> validate($data)) {
-            // falta modificar
-        }
-        $this -> connect();
-        $this -> _DB -> beginTransaction();
-        try {
-            $sql = "UPDATE institucion SET institucion = :institucion, logotipo = :logotipo WHERE id_institucion = :id_institucion";
-            $sth = $this -> _DB -> prepare($sql);
-            $sth -> bindParam(":institucion", $data['institucion'], PDO::PARAM_STR);
-            $sth -> bindParam(":logotipo", $data['logotipo'], PDO::PARAM_STR);
-            $sth -> bindParam(":id_institucion", $id, PDO::PARAM_INT);
-            $sth -> execute();
-            $affectedRows = $sth -> rowCount();
-            $this -> _DB -> commit();
-            return $affectedRows;
-        } catch (Exception $ex) {
-            $this -> _DB -> rollback();
+            $this -> connect();
+            $this -> _DB -> beginTransaction();
+            try {
+                $sql = "UPDATE institucion SET institucion = :institucion, logotipo = :logotipo WHERE id_institucion = :id_institucion";
+                $sth = $this -> _DB -> prepare($sql);
+                $sth -> bindParam(":institucion", $data['institucion'], PDO::PARAM_STR);
+                $sth -> bindParam(":logotipo", $data['logotipo'], PDO::PARAM_STR);
+                $sth -> bindParam(":id_institucion", $id, PDO::PARAM_INT);
+                $sth -> execute();
+                $affectedRows = $sth -> rowCount();
+                $this -> _DB -> commit();
+                return $affectedRows;
+            } catch (Exception $ex) {
+                $this -> _DB -> rollback();
+            }
         }
         return null;
     }
