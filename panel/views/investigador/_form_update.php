@@ -23,7 +23,7 @@
 
   <div class="mb-3">
     <label for="Investigador" class="form-label">Semblanza</label>
-    <input type="text" class="form-control" id="semblanza" name="semblanza" values = "<?php echo $data['semblanza']; ?>" placeholder="Escribe aqui la semblanza" required = "required">
+    <input type="text" class="form-control" id="semblanza" name="semblanza" value = "<?php echo $data['semblanza']; ?>" placeholder="Escribe aqui la semblanza" required = "required">
   </div>
 
   <div class="mb-3">
