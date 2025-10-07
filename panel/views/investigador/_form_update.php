@@ -26,15 +26,33 @@
     <input type="text" class="form-control" id="semblanza" name="semblanza" value = "<?php echo $data['semblanza']; ?>" placeholder="Escribe aqui la semblanza" required = "required">
   </div>
 
-  <div class="mb-3">
+    <div class="mb-3">
     <label for="Investigador" class="form-label">Institucion</label>
-    <input type="text" class="form-control" id="id_institucion" name="id_institucion" value = "<?php echo $data['id_institucion']; ?>" placeholder="Escribe aqui la insitucion" required = "required">
+    <select class = "form-select" id="id_institucion" name="id_institucion" required = "required">
+      <?php foreach($instituciones as $institucion):
+        $selected = "";
+        if($data['id_institucion'] == $institucion['id_institucion']){
+          $selected = "selected";
+        }
+      ?>
+      <option <?php echo $selected; ?> value = "<?php echo $institucion['id_institucion']; ?>"><?php echo $institucion['institucion'];?></option>
+      <?php endforeach; ?>
+    </select>
   </div>
 
-  <div class="mb-3">
+    <div class="mb-3">
     <label for="Investigador" class="form-label">Tratamiento</label>
-    <input type="text" class="form-control" id="id_tratamiento" name="id_tratamiento" value = "<?php echo $data['id_tratamiento']; ?>" placeholder="Escribe aqui el tratamiento" required = "required">
-  </div>
+    <select class = "form-select" id="id_tratamiento" name="id_tratamiento" required = "required">
+      <?php foreach($tratamientos as $tratamiento):
+        $selected = "";
+        if($data['id_tratamiento'] == $tratamiento['id_tratamiento']){
+          $selected = "selected";
+        }
+      ?>
+      <option  <?php echo $selected; ?> value = "<?php echo $tratamiento['id_tratamiento']; ?>"><?php echo $tratamiento['tratamiento'];?></option>
+      <?php endforeach; ?>
+    </select>
+  </div> 
 
   <div class="mb-3">
     <input type="submit" class="btn btn-success" id="enviar" name="enviar" value="Guardar">
