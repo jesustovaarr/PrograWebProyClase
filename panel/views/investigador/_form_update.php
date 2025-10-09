@@ -1,9 +1,13 @@
 <h1>Modificar Investigador</h1>
-<form method = "POST" action = "investigador.php?action=update&id=<?php echo $id; ?>">
+<form method = "POST" enctype="multipart/form-data" action = "investigador.php?action=update&id=<?php echo $id; ?>">
 
-    <div class="mb-3">
-    <label for="Investigador" class="form-label">Fotografia</label>
-    <input type="text" class="form-control" id="fotografia" name="fotografia"  value = "<?php echo $data['fotografia']; ?>" placeholder="foto.png" required = "required">
+<div class="text-center">
+<img src="../images/investigador/<?php echo $data['fotografia']; ?>" width="200" height="200" class="rounded-circle" alt="investigador">
+</div>
+
+  <div class="mb-3">
+    <label for="Investigador" class="form-label"></label>
+    <input type="file" class="form-control" id="fotografia" name="fotografia">
   </div>
 
   <div class="mb-3">

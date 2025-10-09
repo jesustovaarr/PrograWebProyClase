@@ -14,7 +14,7 @@ class Investigador extends Sistema {
             $sth -> bindParam(":semblanza", $data['semblanza'], PDO::PARAM_STR);
             $sth -> bindParam(":id_institucion", $data['id_institucion'], PDO::PARAM_INT);
             $sth -> bindParam(":id_tratamiento", $data['id_tratamiento'], PDO::PARAM_INT);
-            $fotografia = $this -> cargarFotografia('investigador');
+            $fotografia = $this -> cargarFotografia('investigador','fotografia');
             $sth -> bindParam(":fotografia", $fotografia, PDO::PARAM_STR);
             $sth -> execute();   
             $affectedRows = $sth -> rowCount(); 
@@ -56,16 +56,26 @@ class Investigador extends Sistema {
             $this -> connect();
             $this -> _DB -> beginTransaction();
             try {
-                $sql = "UPDATE investigador SET primer_apellido = :primer_apellido, segundo_apellido = :segundo_apellido, nombre = :nombre, fotografia = :fotografia, semblanza = :semblanza, id_institucion = :id_institucion, id_tratamiento = :id_tratamiento WHERE id_investigador = :id_investigador";
+                $sql = "UPDATE investigador SET primer_apellido = :primer_apellido, segundo_apellido = :segundo_apellido, nombre = :nombre, semblanza = :semblanza, id_institucion = :id_institucion, id_tratamiento = :id_tratamiento WHERE id_investigador = :id_investigador";
+                if(isset($_FILES['fotografia'])) {
+                    if($_FILES['fotografia']['error'] == 0) {
+                        $sql = "UPDATE investigador SET primer_apellido = :primer_apellido, segundo_apellido = :segundo_apellido, nombre = :nombre, fotografia = :fotografia, semblanza = :semblanza, id_institucion = :id_institucion, id_tratamiento = :id_tratamiento WHERE id_investigador = :id_investigador";
+                        $fotografia = $this -> cargarFotografia('investigador','fotografia');
+                    }
+                }
                 $sth = $this -> _DB -> prepare($sql);
                 $sth -> bindParam(":primer_apellido", $data['primer_apellido'], PDO::PARAM_STR);
                 $sth -> bindParam(":segundo_apellido", $data['segundo_apellido'], PDO::PARAM_STR);
                 $sth -> bindParam(":nombre", $data['nombre'], PDO::PARAM_STR);
-                $sth -> bindParam(":fotografia", $data['fotografia'], PDO::PARAM_STR);
                 $sth -> bindParam(":semblanza", $data['semblanza'], PDO::PARAM_STR);
                 $sth -> bindParam(":id_institucion", $data['id_institucion'], PDO::PARAM_INT);
                 $sth -> bindParam(":id_tratamiento", $data['id_tratamiento'], PDO::PARAM_INT);
                 $sth -> bindParam(":id_investigador", $id, PDO::PARAM_INT);
+                if(isset($_FILES['fotografia'])) {
+                    if($_FILES['fotografia']['error'] == 0) {
+                        $sth -> bindParam(":fotografia", $fotografia, PDO::PARAM_STR);
+                    }
+                }
                 $sth -> execute();
                 $affectedRows = $sth -> rowCount();
                 $this -> _DB -> commit();

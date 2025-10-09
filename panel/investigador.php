@@ -41,7 +41,6 @@ switch ($action) {
             $data['primer_apellido'] = $_POST['primer_apellido'];
             $data['segundo_apellido'] = $_POST['segundo_apellido'];
             $data['nombre'] = $_POST['nombre'];
-            $data['fotografia'] = $_POST['fotografia'];
             $data['semblanza'] = $_POST['semblanza'];
             $data['id_institucion'] = $_POST['id_institucion'];
             $data['id_tratamiento'] = $_POST['id_tratamiento'];
