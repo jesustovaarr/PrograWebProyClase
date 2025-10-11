@@ -1,9 +1,9 @@
 <h1>Modificar Investigador</h1>
 <form method = "POST" enctype="multipart/form-data" action = "investigador.php?action=update&id=<?php echo $id; ?>">
 
-<div class="text-center">
-<img src="../images/investigador/<?php echo $data['fotografia']; ?>" width="200" height="200" class="rounded-circle" alt="investigador">
-</div>
+  <div class="text-center">
+    <img src="../images/investigador/<?php echo $data['fotografia']; ?>" width="200" height="200" class="rounded-circle" alt="investigador">
+  </div>
 
   <div class="mb-3">
     <label for="Investigador" class="form-label"></label>

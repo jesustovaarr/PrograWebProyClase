@@ -8,8 +8,9 @@ class Institucion extends Sistema {
             $sql = "INSERT INTO institucion (institucion, logotipo)
                     VALUES (:institucion, :logotipo)";
             $sth = $this -> _DB -> prepare($sql);
-            $sth -> bindParam(":institucion", $data['institucion'], PDO::PARAM_STR);    
-            $sth -> bindParam(":logotipo", $data['logotipo'], PDO::PARAM_STR); 
+            $sth -> bindParam(":institucion", $data['institucion'], PDO::PARAM_STR);   
+            $logotipo = $this -> cargarFotografia('institucion','logotipo');
+            $sth -> bindParam(":logotipo", $logotipo, PDO::PARAM_STR);             
             $sth -> execute();   
             $affectedRows = $sth -> rowCount(); 
             $this -> _DB -> commit();
@@ -45,11 +46,21 @@ class Institucion extends Sistema {
             $this -> connect();
             $this -> _DB -> beginTransaction();
             try {
-                $sql = "UPDATE institucion SET institucion = :institucion, logotipo = :logotipo WHERE id_institucion = :id_institucion";
+                $sql = "UPDATE institucion SET institucion = :institucion WHERE id_institucion = :id_institucion";
+                if(isset($_FILES['logotipo'])) {
+                    if($_FILES['logotipo']['error'] == 0) {
+                        $sql = "UPDATE institucion SET institucion = :institucion, logotipo = :logotipo WHERE id_institucion = :id_institucion";
+                        $logotipo = $this -> cargarFotografia('institucion','logotipo');
+                    }
+                }
                 $sth = $this -> _DB -> prepare($sql);
                 $sth -> bindParam(":institucion", $data['institucion'], PDO::PARAM_STR);
-                $sth -> bindParam(":logotipo", $data['logotipo'], PDO::PARAM_STR);
                 $sth -> bindParam(":id_institucion", $id, PDO::PARAM_INT);
+                if(isset($_FILES['logotipo'])) {
+                    if($_FILES['logotipo']['error'] == 0) {
+                        $sth -> bindParam(":logotipo", $logotipo, PDO::PARAM_STR);
+                    }
+                }  
                 $sth -> execute();
                 $affectedRows = $sth -> rowCount();
                 $this -> _DB -> commit();
