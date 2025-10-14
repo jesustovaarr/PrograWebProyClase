@@ -73,4 +73,5 @@ switch ($action) {
         break;
 }
 include_once("./views/footer.php");
+print_r($_SESSION);
 ?>
