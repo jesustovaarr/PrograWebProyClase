@@ -5,6 +5,10 @@ $action = isset($_GET['action']) ? $_GET['action'] : 'login';
 switch ($action) {
     case 'logout':
         $app -> logout();
+        $alerta['mensaje'] = "Usted ha salido correctamente del sistema";
+        $alerta['tipo'] = "success";
+        include_once("./views/alert.php");
+        include_once("./views/login/login.php");
         break;
 
     case 'login':
@@ -18,7 +22,7 @@ switch ($action) {
                 $alerta['mensaje'] = "Correo o contraseña incorrecta";
                 $alerta['tipo'] = "danger";
                 include_once("./views/alert.php");
-                include_once("./views/login/login.php");
+                include_once("./views/login/login.php"); 
             }
         } else {
             include_once("./views/login/login.php");

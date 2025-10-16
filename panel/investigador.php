@@ -3,6 +3,7 @@ require_once("../models/investigador.php");
 require_once("../models/institucion.php");
 require_once("../models/tratamiento.php");
 $app = new Investigador();
+$app -> checarRol('Investigador');
 $appInstitucion = new Institucion();
 $appTratamiento = new Tratamiento();
 $instituciones = $appInstitucion -> read();

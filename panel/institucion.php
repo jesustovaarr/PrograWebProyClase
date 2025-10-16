@@ -1,6 +1,7 @@
 <?php
 require_once("../models/institucion.php");
 $app = new Institucion();
+$app -> checarRol('Administrador');
 $action = isset($_GET['action']) ? $_GET['action'] : 'read';
 $data = array();
 include_once("./views/header.php");
