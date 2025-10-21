@@ -1,4 +1,4 @@
-<h1>Nueva Institución</h1>
+<h1>Editar Institución</h1>
 <form method = "POST" enctype="multipart/form-data" action = "institucion.php?action=update&id=<?php echo $id; ?>">
 
   <div class="text-center">

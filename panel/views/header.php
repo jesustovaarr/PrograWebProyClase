@@ -26,11 +26,21 @@
                     <li><a class="dropdown-item" href="institucion.php">Instituciones</a></li>
                     <li><a class="dropdown-item" href="tratamiento.php">Tratamientos</a></li>
                     <li><a class="dropdown-item" href="investigador.php">Investigadores</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="usuario.php">Usuarios</a></li>
                 </ul>
                 </li>
+
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Administración
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="usuarios.php">Usuarios</a></li>
+                    <li><a class="dropdown-item" href="roles.php">Roles</a></li>
+                    <li><a class="dropdown-item" href="privilegios.php">Privilegios</a></li>
+                </ul>
+                </li>
+
                 <li class="nav-item">
                 <a class="nav-link" href ="login.php?action=logout">Salir</a>
                 </li>

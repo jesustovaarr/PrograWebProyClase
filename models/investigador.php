@@ -18,6 +18,37 @@ class Investigador extends Sistema {
             $sth -> bindParam(":fotografia", $fotografia, PDO::PARAM_STR);
             $sth -> execute();   
             $affectedRows = $sth -> rowCount(); 
+            $sql = "INSERT INTO usuario (correo, contrasena)
+                    VALUES (:correo, :contrasena)";
+            $sth = $this -> _DB -> prepare($sql);
+            $sth -> bindParam(":correo", $data['correo'], PDO::PARAM_STR);
+            $pwd = md5($data['contrasena']);
+            $sth->bindParam(":contrasena", $pwd, PDO::PARAM_STR);
+            $sth -> execute();
+            $sql = "SELECT * FROM usuario
+                    WHERE correo = :correo";
+            $sth = $this -> _DB -> prepare($sql);
+            $sth -> bindParam(":correo", $data['correo'], PDO::PARAM_STR);
+            $sth -> execute();
+            $usuario = $sth -> fetch(PDO::FETCH_ASSOC);
+            $id_usuario = $usuario['id_usuario'];
+            $sql = "INSERT INTO usuario_rol (id_rol, id_usuario)
+                    VALUES (2, :id_usuario)";
+            $sth = $this -> _DB -> prepare($sql);
+            $sth -> bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
+            $sth -> execute();
+            $sql = "SELECT * FROM investigador
+                    ORDER BY id_investigador DESC LIMIT 1";
+            $sth = $this -> _DB -> prepare($sql);
+            $sth -> execute();
+            $investigador = $sth -> fetch(PDO::FETCH_ASSOC);
+            $id_investigador = $investigador['id_investigador'];
+            $SQL = "UPDATE investigador SET id_usuario = :id_usuario
+                    WHERE id_investigador = :id_investigador";
+            $sth = $this -> _DB -> prepare($SQL);
+            $sth -> bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
+            $sth -> bindParam(":id_investigador", $id_investigador, PDO::PARAM_INT);
+            $sth -> execute();
             $this -> _DB -> commit();
             return $affectedRows;
         } catch (Exception $ex) {

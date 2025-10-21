@@ -22,6 +22,16 @@
   </div>
 
   <div class="mb-3">
+    <label for="Investigador" class="form-label">Correo Electronico</label>
+    <input type="text" class="form-control" id="correo" name="correo" placeholder="Escribe aqui el correo electronico" required = "required">
+  </div>
+
+  <div class="mb-3">
+    <label for="Investigador" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Escribe aqui tu contraseña" required = "required">
+  </div>
+
+  <div class="mb-3">
     <label for="Investigador" class="form-label">Semblanza</label>
     <input type="text" class="form-control" id="semblanza" name="semblanza" placeholder="Escribe aqui la semblanza" required = "required">
   </div>
