@@ -72,6 +72,12 @@ switch ($action) {
     case 'read':
     default:
         $data = $app-> read();
+        foreach ($data as &$usuario) {
+            $usuario['roles'] = $app-> getRoles($usuario['correo']);
+            $usuario['permisos'] = $app-> getPermisos($usuario['correo']);
+        }
+        unset($usuario);
+
         include_once("./views/usuario/index.php");
         break;
 }
