@@ -33,8 +33,12 @@ class Investigador extends Sistema {
             $usuario = $sth -> fetch(PDO::FETCH_ASSOC);
             $id_usuario = $usuario['id_usuario'];
             $sql = "INSERT INTO usuario_rol (id_rol, id_usuario)
-                    VALUES (2, :id_usuario)";
+                    VALUES (:id_rol, :id_usuario)";
             $sth = $this -> _DB -> prepare($sql);
+            $sth -> bindParam(":id_rol", 2, PDO::PARAM_INT);
+            $sth -> bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
+            $sth -> execute();
+            $sth -> bindParam(":id_rol", 3, PDO::PARAM_INT);
             $sth -> bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
             $sth -> execute();
             $sql = "SELECT * FROM investigador
@@ -49,6 +53,14 @@ class Investigador extends Sistema {
             $sth -> bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
             $sth -> bindParam(":id_investigador", $id_investigador, PDO::PARAM_INT);
             $sth -> execute();
+            $para = $data['correo'];
+            $asunto = "Cuenta de Investigador creada";
+            $mensaje = "Su cuenta de investigador ha sido creada exitosamente.
+                <br><br>Correo: " . $data['correo'] . "
+                <br>Contraseña: " . $data['contrasena'] . "
+                <br><br>Atentamente, Administrador Red de Investigacion.";
+            $nombre = $data['nombre'] . " " . $data['primer_apellido'] . " " . $data['segundo_apellido'];
+            $mail = $this->enviarCorreos($para, $asunto, $mensaje, $nombre);
             $this -> _DB -> commit();
             return $affectedRows;
         } catch (Exception $ex) {
