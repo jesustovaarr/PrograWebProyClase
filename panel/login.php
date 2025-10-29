@@ -40,7 +40,7 @@ switch ($action) {
             $alerta['mensaje'] = "Ocurrio un error al intentar cambiar la contraseña.";
             $alerta['tipo'] = "danger";
             include_once("./views/alert.php");
-            include_once("./views/login/token.php");
+            include_once("./views/login/login.php");
         }
         break;
 

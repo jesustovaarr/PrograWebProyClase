@@ -12,7 +12,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
 require 'vendor/autoload.php';
-require_once 'config.php';
+require_once ("config.php");
 
 //Create a new PHPMailer instance
 $mail = new PHPMailer();

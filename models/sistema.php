@@ -1,6 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
+require_once ("../config.php");
 session_start();
 class Sistema {
     var $_DSN = "mysql:host=mariadb; dbname=database;";
@@ -122,7 +123,7 @@ class Sistema {
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->SMTPAuth = true;
         $mail->Username = '22030344@itcelaya.edu.mx';
-        $mail->Password = 'SECRET_PASSWORD';
+        $mail->Password = PASSWORD_CORREO;
         $mail->setFrom('22030344@itcelaya.edu.mx', 'Jesus Alejandro Elguera Tovar');
         $mail->addAddress($para, $nombre ? $nombre : 'Red de Investigacion');
         $mail->Subject = $asunto;
@@ -136,7 +137,7 @@ class Sistema {
 
     function cambiarContrasena($data){
         if(!filter_var($data['correo'], FILTER_VALIDATE_EMAIL)){
-            return flase;
+            return false;
         }
         $this -> connect();
         $token = bin2hex(random_bytes(16));
