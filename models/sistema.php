@@ -1,12 +1,12 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
-require_once ("../config.php");
+require_once (__DIR__ . "/../config.php");
 session_start();
 class Sistema {
-    var $_DSN = "mysql:host=mariadb; dbname=database;";
-    var $_USER ="user";
-    var $_PASSWORD = "password";
+    var $_DSN = "mysql:host=".DB_HOST."; dbname=".DB_NAME.";";
+    var $_USER = DB_USER;
+    var $_PASSWORD = DB_PASSWORD;
     var $_DB = null;
 
     function connect () {

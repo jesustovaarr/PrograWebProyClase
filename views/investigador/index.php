@@ -18,7 +18,7 @@
                                 echo "<td>".$investigador['primer_apellido']." ".$investigador['segundo_apellido']." ".$investigador['nombre']."</td>";
                                 echo "<td>".$investigador['institucion']."</td>";
                                 echo "<td>".$investigador['semblanza']."</td>";
-                                echo '<td><img class="imagen-miembro" src="images/investigadores/' .$investigador['fotografia']. '" alt="investigador" /></td>'; '" alt="investigador" /></td>';
+                                echo '<td><img class="imagen-miembro" src="images/investigador/' .$investigador['fotografia']. '" alt="investigador" /></td>'; '" alt="investigador" /></td>';
                                 echo "</tr>";
                             endforeach;
                         ?>
