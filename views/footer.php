@@ -27,6 +27,9 @@
           <div class="col-12 col-md-4">
               <h5>Únete</h5>
               <p>Colabora en proyectos de investigación.</p>
+              <ul>
+                <li><a href="panel/login.php">Acceso</a></li>
+              </ul>
           </div>
       </div>      
 

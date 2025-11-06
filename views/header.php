@@ -60,9 +60,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="infolegal.php">Información Legal</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="panel/login.php">Login</a>
-              </li>
             </ul>
           </div>
         </div>
