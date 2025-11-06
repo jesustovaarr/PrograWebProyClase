@@ -2,6 +2,8 @@
 use Spipu\Html2Pdf\Html2Pdf;
 use Spipu\Html2Pdf\Exception\Html2PdfException;
 use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
+use Box\Spout\Common\Entity\Row;
 require_once("sistema.php");
 
 class Reportes extends Sistema {
@@ -58,5 +60,67 @@ class Reportes extends Sistema {
         $html2pdf->writeHTML($this->content);
         $html2pdf->output('reporteInstituciones.pdf');
     }
+
+    function InstitucionesExcel($nombre){
+        require_once(__DIR__ . '/../vendor/autoload.php');
+
+        $writer = WriterEntityFactory::createXLSXWriter();
+        // $writer = WriterEntityFactory::createODSWriter();
+        // $writer = WriterEntityFactory::createCSVWriter();
+
+        $filePath = __DIR__.'/../panel/downloads/'.$nombre.'.xlsx';
+        $writer->openToFile($filePath); // write data to a file or to a PHP stream
+        //$writer->openToBrowser($fileName); // stream data directly to the browser
+
+        $cells = [
+            WriterEntityFactory::createCell('Instituciones'),
+            WriterEntityFactory::createCell('Cantidad de Investigadores'),
+            
+        ];
+
+        /** add a row at a time */
+        $singleRow = WriterEntityFactory::createRow($cells);
+        $writer->addRow($singleRow);
+
+        $institucion = new Institucion();
+        $data = $institucion -> reporteInstitucionesInvestigadores();
+
+        foreach ($data as $institucion) :
+            $cells = [
+                WriterEntityFactory::createCell($institucion['institucion']),
+                WriterEntityFactory::createCell($institucion['cantidad']),
+            ];
+            
+            $singleRow = WriterEntityFactory::createRow($cells);
+            $writer->addRow($singleRow);
+        endforeach;
+
+        $writer->close();
+
+        if (!file_exists($filePath) || !is_readable($filePath)) {
+            http_response_code(404);
+            die('Error: El archivo no fue encontrado o no se puede leer.');
+        }
+
+        if (ob_get_level()) {
+            ob_end_clean();
+        }
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+        header('Content-Disposition: attachment; filename="' . basename($nombre) . '"');
+
+        header('Content-Length: ' . filesize($filePath));
+
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+
+        readfile($filePath);
+
+        exit;
+
+    }
+
 }
 ?>

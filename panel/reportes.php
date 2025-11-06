@@ -11,6 +11,12 @@ switch ($action) {
         $app -> InstitucionesInvestigadores();
         break;
 
+    case 'InstitucionesExcel':
+        $app -> checarRol('Administrador');
+        $rand = md5(rand(1000, 10000000));
+        $app -> InstitucionesExcel('reporteInstituciones'.$rand);
+        break;
+
     default:
         die();
         break;

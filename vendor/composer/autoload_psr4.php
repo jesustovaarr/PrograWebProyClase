@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'Spipu\\Html2Pdf\\' => array($vendorDir . '/spipu/html2pdf/src'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
+    'Box\\Spout\\' => array($vendorDir . '/box/spout/src/Spout'),
 );
