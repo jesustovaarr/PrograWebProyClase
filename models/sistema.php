@@ -108,7 +108,7 @@ class Sistema {
         if(!in_array($rol,$roles)) {
             $alerta['mensaje'] = "Usted no tiene el rol adecuado";
             $alerta['tipo'] = "danger";
-            include_once("./views/error.php");
+            include_once(__DIR__."/../panel/views/error.php");
             die();
         }
     }
