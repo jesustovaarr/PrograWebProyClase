@@ -90,7 +90,7 @@ class Sistema {
                         $extension = explode('.',$imagen['name']);
                         $extension = $extension[count($extension)-1];
                         $nombreArchivo = $nombreArchivo.'.'.$extension;
-                        $rutaFinal = '../images/'.$carpeta.'/'.$nombreArchivo;
+                        $rutaFinal = __DIR__.'/../images/'.$carpeta.'/'.$nombreArchivo;
                         if(!file_exists($rutaFinal)) {
                             if(move_uploaded_file($imagen['tmp_name'],$rutaFinal)) {
                                 return $nombreArchivo;
