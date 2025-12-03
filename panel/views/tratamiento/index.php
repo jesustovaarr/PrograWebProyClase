@@ -1,9 +1,8 @@
 <h1>Tratamientos</h1>
-<div class="btn-group" role="group" aria-label="Basic mixed styles example">
-    <a href="tratamiento.php?action=create" class="btn btn-success">Nuevo</a>
-    <a class="btn btn-primary">Imprimir</a>
+<div class="crud-header-buttons mb-3">
+    <a href="tratamiento.php?action=create" class="btn btn-primary">Nuevo Tratamiento</a>
 </div>   
-<table class="table">
+<table class="table panel-table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -17,9 +16,9 @@
         <th scope="row"><?php echo $tratamiento['id_tratamiento']; ?></th>
         <td><?php echo $tratamiento['tratamiento']; ?></td>
         <td>
-            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                <a href ="tratamiento.php?action=update&id=<?php echo $tratamiento['id_tratamiento']; ?>" class="btn btn-warning">Editar</a>
-                <a href ="tratamiento.php?action=delete&id=<?php echo $tratamiento['id_tratamiento']; ?>" class="btn btn-danger">Eliminar</a>
+            <div class="btn-group" role="group">
+                <a href="tratamiento.php?action=update&id=<?php echo $tratamiento['id_tratamiento']; ?>" class="btn-action btn-edit" title="Editar"><i class="fas fa-pencil-alt"></i></a>
+                <a href="tratamiento.php?action=delete&id=<?php echo $tratamiento['id_tratamiento']; ?>" class="btn-action btn-delete" title="Eliminar"><i class="fas fa-trash"></i></a>
             </div>   
         </td>
         </tr>

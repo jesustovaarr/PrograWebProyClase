@@ -1,8 +1,8 @@
 <h1>Privilegios</h1>
-<div class="btn-group" role="group" aria-label="Basic mixed styles example">
-    <a href="privilegio.php?action=create" class="btn btn-success">Nuevo</a>
+<div class="crud-header-buttons mb-3">
+    <a href="privilegio.php?action=create" class="btn btn-primary">Nuevo Privilegio</a>
 </div>   
-<table class="table">
+<table class="table panel-table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -16,9 +16,9 @@
             <th scope="row"><?php echo $privilegio['id_privilegio']; ?></th>
             <td><?php echo $privilegio['privilegio']; ?></td>
             <td>
-                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                    <a href ="privilegio.php?action=update&id=<?php echo $privilegio['id_privilegio']; ?>" class="btn btn-warning">Editar</a>
-                    <a href ="privilegio.php?action=delete&id=<?php echo $privilegio['id_privilegio']; ?>" class="btn btn-danger">Eliminar</a>
+                <div class="btn-group" role="group">
+                    <a href="privilegio.php?action=update&id=<?php echo $privilegio['id_privilegio']; ?>" class="btn-action btn-edit" title="Editar"><i class="fas fa-pencil-alt"></i></a>
+                    <a href="privilegio.php?action=delete&id=<?php echo $privilegio['id_privilegio']; ?>" class="btn-action btn-delete" title="Eliminar"><i class="fas fa-trash"></i></a>
                 </div>   
             </td>
         </tr>

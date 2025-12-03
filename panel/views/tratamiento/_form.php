@@ -6,7 +6,7 @@
   </div>
 
   <div class="mb-3">
-    <input type="submit" class="btn btn-success" id="enviar" name="enviar" value="Guardar">
+    <input type="submit" class="btn btn-primary" id="enviar" name="enviar" value="Guardar">
   </div>
 
 </form>

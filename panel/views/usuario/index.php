@@ -1,9 +1,8 @@
 <h1>Usuarios</h1>
-<div class="btn-group" role="group" aria-label="Basic mixed styles example">
-    <a href="usuario.php?action=create" class="btn btn-success">Nuevo</a>
-    <a class="btn btn-primary">Imprimir</a>
+<div class="crud-header-buttons mb-3">
+    <a href="usuario.php?action=create" class="btn btn-primary">Nuevo Usuario</a>
 </div>   
-<table class="table">
+<table class="table panel-table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -17,12 +16,12 @@
         <th scope="row"><?php echo $usuario['id_usuario']; ?></th>
         <td><?php echo $usuario['correo']; ?></td>
         <td>
-            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <div class="btn-group" role="group">
 
-                <a href ="usuario.php?action=update&id=<?php echo $usuario['id_usuario']; ?>" class="btn btn-warning">Editar</a>
+                <a href ="usuario.php?action=update&id=<?php echo $usuario['id_usuario']; ?>" class="btn-action btn-edit" title="Editar"><i class="fas fa-pencil-alt"></i></a>
 
-                <div class="btn-group">
-                    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="btn-group dropup" role="group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle btn-roles-dropdown" data-bs-toggle="dropdown" data-bs-container="body" aria-expanded="false" data-bs-offset="0,10">
                         Roles
                     </button>
                     <ul class="dropdown-menu p-2">
@@ -48,7 +47,7 @@
                     </ul>
                 </div>
 
-                <a href ="usuario.php?action=delete&id=<?php echo $usuario['id_usuario']; ?>" class="btn btn-danger">Eliminar</a>
+                <a href ="usuario.php?action=delete&id=<?php echo $usuario['id_usuario']; ?>" class="btn-action btn-delete" title="Eliminar"><i class="fas fa-trash"></i></a>
                 
             </div>   
         </td>
